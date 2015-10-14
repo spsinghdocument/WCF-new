@@ -1,0 +1,11 @@
+<system.serviceModel>
+.....
+		<protocolMapping>
+			<add binding="wsDualHttpBinding" scheme="http"/>
+      <add scheme="net.tcp" binding="netTcpBinding"/>
+		</protocolMapping>
+...
+<services>
+
+		<service name="Mys">
+				<endpoint address="" binding="netTcpBinding" contract="Iservice"></endpoint>

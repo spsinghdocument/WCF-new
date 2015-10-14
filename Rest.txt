@@ -1,0 +1,9 @@
+using System.IO;
+using System.Net;
+
+WebRequest w = WebRequest.Create("http://localhost:3196/New%20folder/Service.svc");
+            WebResponse y = w.GetResponse();
+            StreamReader s=    new StreamReader(y.GetResponseStream());
+            string i = s.ReadToEnd();
+            s.Close();
+            Response.Write(i);

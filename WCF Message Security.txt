@@ -1,0 +1,11 @@
+<behaviors>
+			<serviceBehaviors>
+				<behavior>
+					<serviceCredentials>
+						<serviceCertificate findValue="muneesh" storeName="My" x509FindType="FindBySubjectName" storeLocation="LocalMachine"/>
+					</serviceCredentials>
+				<serviceMetadata httpGetEnabled="true"/>
+				<serviceDebug includeExceptionDetailInFaults="false"/>
+				</behavior>
+			</serviceBehaviors>
+		</behaviors>

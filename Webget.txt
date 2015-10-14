@@ -1,0 +1,91 @@
+.............................................Interface .......................................................
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.Text;
+using System.ServiceModel.Web;
+namespace WcfServiceLibrary1
+{
+    [ServiceContract]
+    public interface IService1
+    {
+    [WebGet(UriTemplate="gd",ResponseFormat=WebMessageFormat.Json,RequestFormat=WebMessageFormat.Json)]
+   // [WebInvoke( Method = "GET",ResponseFormat = WebMessageFormat.Xml,BodyStyle = WebMessageBodyStyle.Wrapped,UriTemplate = "gd")]
+        [OperationContract]
+        string GetData();
+       
+    }
+
+
+}
+//================================================================ CS ===================================================
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.Text;
+
+namespace WcfServiceLibrary1
+{
+
+    public class Service1 : IService1
+    {
+
+
+
+        string IService1.GetData()
+        {
+            return "saurabh pratap singh";
+        }
+       
+    }
+}
+
+//==================================================================App.config ================================
+
+<?xml version="1.0"?>
+<configuration>
+
+  <system.web>
+    <compilation debug="true"/>
+  </system.web>
+  <system.serviceModel>
+   
+    <services>
+      <service name="WcfServiceLibrary1.Service1" behaviorConfiguration="mybs">
+        <host>
+          <baseAddresses>
+            <add baseAddress = "http://localhost:8732/Design_Time_Addresses/" />
+          </baseAddresses>
+        </host>
+        
+        <endpoint address="" binding="webHttpBinding" contract="WcfServiceLibrary1.IService1" behaviorConfiguration="myb">
+         
+          <identity>
+            <dns value="localhost"/>
+          </identity>
+        </endpoint>
+        
+        <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange"/>
+      </service>
+    </services>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior name="mybs">
+         
+          <serviceMetadata httpGetEnabled="True"/>
+          <serviceDebug includeExceptionDetailInFaults="True"/>
+        </behavior>
+      </serviceBehaviors>
+      <endpointBehaviors>
+        <behavior name="myb">
+          <webHttp/>
+        </behavior>
+      </endpointBehaviors>
+    </behaviors>
+  </system.serviceModel>
+
+<startup><supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/></startup></configuration>
